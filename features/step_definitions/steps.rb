@@ -10,7 +10,7 @@ end
 def to_browser_id (browser)
   case browser.downcase
     when 'internet explorer', 'ie'
-      'internet explorer'
+      'internet_explorer'
     when /phantom/
       'phantomjs'
     else
