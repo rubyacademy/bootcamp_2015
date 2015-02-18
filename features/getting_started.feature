@@ -26,3 +26,6 @@
     | PhantomJS         |
     | IE                |
     | chrome            |
+
+  Scenario: launch internet explorer
+    Given I am on the USA.gov home page

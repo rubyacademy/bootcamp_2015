@@ -17,3 +17,7 @@ def to_browser_id (browser)
       browser.downcase!.nil? ? browser : browser.downcase!
   end
 end
+
+Given /^I am on the USA.gov home page$/ do
+  BROWSER.goto 'www.usa.gov'
+end
