@@ -3,7 +3,8 @@ Given(/^I open the "(.*?)" browser$/) do |browser|
 end
 
 Then(/^the "(.*?)" browser is open$/) do |browser|
-  fail ("The #{browser} browser is not open.") unless HelperMethods.to_browser_id(browser).to_sym == @browser_opened.name
+  fail ("The #{browser} browser is not open.") unless HelperMethods.to_browser_id(browser) == @browser_opened.name
+  @browser_opened.close
 end
 
 Given /^I am on the USA.gov home page$/ do
