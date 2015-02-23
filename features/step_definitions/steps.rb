@@ -65,3 +65,10 @@ Then(/^I see "(.*?)" search result\(s\)$/) do |expected_count|
 
     fail("The actual count #{result_count} does not match the expected count #{expected_count}.") unless comparison
 end
+
+Then /^I see the search term truncated to (\d+) characters$/ do |character_number|
+  expected = character_number.to_i
+  # get search string from edit field
+  actual = BROWSER.text_field(:id => "query").value.size
+  fail("#{actual} not equal to #{expected}") unless actual == expected
+end
