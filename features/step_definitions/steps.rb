@@ -15,7 +15,7 @@ Then /^I see a search field$/ do
   fail ('The search field was not visible.') unless BROWSER.text_field(:id => "query").visible?
 end
 
-Then /^the field value is "([^"]*)"$/ do |search_string|
+Then /^the search field value is "([^"]*)"$/ do |search_string|
   actual =  BROWSER.text_field(:id => "query").placeholder
   unless search_string == actual
     fail ("The search field value #{actual } does not match the expected value #{ search_string }.")
@@ -26,7 +26,7 @@ Then /^I see a search button$/ do
   fail ("The search button was not present.") unless BROWSER.button(:id => "buscarSubmit").present?
 end
 
-Then /^the button label is "([^"]*)"$/ do |button_label|
+Then /^the search button label is "([^"]*)"$/ do |button_label|
   actual =  BROWSER.button(:id => "buscarSubmit").text
   unless button_label  == actual
     fail ("The search button label #{actual} does not match the expected value #{ button_label }.")
@@ -64,4 +64,10 @@ Then(/^I see "(.*?)" search result\(s\)$/) do |expected_count|
                  end
 
     fail("The actual count #{result_count} does not match the expected count #{expected_count}.") unless comparison
+end
+
+Then /^a "([^"]*)" message displays$/ do |message|
+  actual = BROWSER.div(:id => 'no-results').text
+
+  fail("The message #{actual} does not contain the text #{message}") unless actual =~ /#{message}/
 end
