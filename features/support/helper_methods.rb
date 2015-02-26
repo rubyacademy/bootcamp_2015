@@ -12,12 +12,24 @@ module HelperMethods
     def to_browser_id(browser)
       case browser.downcase
         when 'internet explorer', 'ie'
-          browser_name = 'internet_explorer'
+          :internet_explorer
         when /phantom/
-          browser_name = 'phantomjs'
+          :phantomjs
+        when /chrome/
+          :chrome
         else
-          browser_name = browser.downcase
+          :firefox
       end
+    end
+
+    def suppress_warnings
+      #from http://mentalized.net/journal/2010/04/02/suppress-warnings-from-ruby/
+      original_verbosity = $VERBOSE
+      $VERBOSE = nil
+      result = yield
+      $VERBOSE = original_verbosity
+
+      result
     end
 
   end
