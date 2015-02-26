@@ -71,3 +71,10 @@ Then /^a "([^"]*)" message displays$/ do |message|
 
   fail("The message #{actual} does not contain the text #{message}") unless actual =~ /#{message}/
 end
+
+Then /^I see the search term truncated to (\d+) characters$/ do |character_number|
+  expected = character_number.to_i
+  # get search string from edit field
+  actual = BROWSER.text_field(:id => "query").value.size
+  fail("#{actual} not equal to #{expected}") unless actual == expected
+end
