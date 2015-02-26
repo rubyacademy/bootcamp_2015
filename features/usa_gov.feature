@@ -4,10 +4,16 @@ Feature: USA gov home page
     Given I am on the USA.gov home page
 
   Scenario: Search section exists
-    Then I see a search field
-    And the field value is "Search the Government..."
-    And I see a search button
-    And the button label is "Search"
+     Then I see a search field
+
+  Scenario: Search field value
+    Then the search field value is "Search the Government..."
+
+  Scenario: Search button exists
+    Then I see a search button
+
+  Scenario: Search button value
+    Then the search button label is "Search"
 
   Scenario: Enter search
     When I submit a search "health"
@@ -24,3 +30,7 @@ Feature: USA gov home page
   Scenario: Enter search - max 20 results per page
     When I submit a search "tax"
     Then I see "20" search result(s)
+
+  Scenario: Search 0 results
+    When I submit a search "This.statement.can.have.50.characters.but.not...."
+    Then a "no results found" message displays
